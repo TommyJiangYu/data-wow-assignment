@@ -1,0 +1,57 @@
+# Node.js dependencies
+**/node_modules/
+
+# Logs
+**/logs/
+*.log
+
+# Runtime data
+**/pids/
+*.pid
+*.seed
+*.pid.lock
+
+# Build outputs
+**/dist/
+**/build/
+**/.next/
+**/out/
+
+# Environment variables
+**/.env*
+!**/.env.example
+
+# Editor directories and files
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Jest and testing
+**/coverage/
+
+# TypeScript
+*.tsbuildinfo
+**/next-env.d.ts
+
+# Yarn and lock files
+# If you're using npm, you might want to commit package-lock.json
+# Remove 'package-lock.json' from the ignore list if you want to commit it
+yarn.lock
+
+# Miscellaneous
+*.pem
+*.seed
+.nyc_output
