@@ -3,6 +3,9 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import ormconfig from './ormconfig';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConnectionModule } from './connection/connection.module';
+import { PostModule } from './post/post.module';
+import { UserModule } from './user/user.module';
+import { CommentModule } from './comment/comment.module';
 
 const env = process.env.NODE_ENV;
 
@@ -19,6 +22,9 @@ const env = process.env.NODE_ENV;
         configService.get('ormconfig'),
     }),
     ConnectionModule,
+    PostModule,
+    UserModule,
+    CommentModule,
   ],
   controllers: [],
   providers: [],
