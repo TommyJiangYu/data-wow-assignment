@@ -1,4 +1,47 @@
-import { Controller } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Param,
+  Delete,
+  Query,
+  UsePipes,
+  ValidationPipe,
+  Put,
+} from '@nestjs/common';
+import { PostService } from './post.service';
+import { CreatePostDto, UpdatePostDto } from './dto';
+import { PaginationDto } from 'src/pagination/pagination.dto';
+import { QueryParams } from 'src/pagination/types';
 
-@Controller('post')
-export class PostController {}
+@Controller('posts')
+export class PostController {
+  constructor(private readonly postService: PostService) {}
+
+  @Post()
+  create(@Body() createPostDto: CreatePostDto) {
+    return this.postService.create(createPostDto);
+  }
+
+  @Get()
+  @UsePipes(new ValidationPipe({ transform: true }))
+  findAll(@Query() queryParams: PaginationDto & QueryParams) {
+    return this.postService.findAll(queryParams);
+  }
+
+  @Get(':id')
+  findOne(@Param('id') id: number) {
+    return this.postService.findOne({ id });
+  }
+
+  @Put(':id')
+  update(@Param('id') id: number, @Body() updatePostDto: UpdatePostDto) {
+    return this.postService.update({ id, updatePostInfo: updatePostDto });
+  }
+
+  @Delete(':id')
+  remove(@Param('id') id: number) {
+    return this.postService.remove({ id });
+  }
+}

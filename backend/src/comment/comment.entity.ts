@@ -4,6 +4,8 @@ import {
   Column,
   ManyToOne,
   JoinColumn,
+  CreateDateColumn,
+  UpdateDateColumn,
 } from 'typeorm';
 import { User } from '../user/user.entity';
 import { Post } from '../post/post.entity';
@@ -16,8 +18,11 @@ export class Comment {
   @Column('text')
   commentMessage: string;
 
-  @Column()
-  createdTime: Date;
+  @CreateDateColumn()
+  created_at: Date;
+
+  @UpdateDateColumn()
+  updated_at: Date;
 
   @ManyToOne(() => User, (user) => user.comments)
   @JoinColumn({ name: 'userId' })

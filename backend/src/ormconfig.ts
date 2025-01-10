@@ -5,10 +5,10 @@ import { config as dotenvConfig } from 'dotenv';
 import path from 'path';
 
 const env = process.env.NODE_ENV || 'development';
+const isDevelopment = env === 'development';
 
 dotenvConfig({
-  path:
-    env === 'development' ? '.env' : path.resolve(__dirname, `../.env.${env}`),
+  path: isDevelopment ? '.env' : path.resolve(__dirname, `../.env.${env}`),
 });
 
 const config: DataSourceOptions = {
@@ -20,8 +20,8 @@ const config: DataSourceOptions = {
   database: process.env.DB_NAME,
   synchronize: false,
   logging: false,
-  entities: ['src/**/*.entity{.ts,.js}'],
-  migrations: ['src/migrations/*{.ts,.js}'],
+  entities: ['dist/**/*.entity{.ts,.js}'],
+  migrations: ['src/migrations/*{.ts}'],
   subscribers: [],
   migrationsTableName: 'migrations',
 };

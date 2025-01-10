@@ -1,4 +1,13 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToMany, JoinTable } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  OneToMany,
+  ManyToMany,
+  JoinTable,
+  CreateDateColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 import { Post } from '../post/post.entity';
 import { Comment } from '../comment/comment.entity';
 import { Exclude } from 'class-transformer';
@@ -20,6 +29,12 @@ export class User {
 
   @Column({ nullable: true })
   imgProfile: string;
+
+  @CreateDateColumn()
+  created_at: Date;
+
+  @UpdateDateColumn()
+  updated_at: Date;
 
   @ManyToMany(() => Post, (post) => post.users, {
     cascade: true,

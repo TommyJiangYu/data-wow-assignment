@@ -4,6 +4,8 @@ import {
   Column,
   OneToMany,
   ManyToMany,
+  CreateDateColumn,
+  UpdateDateColumn,
 } from 'typeorm';
 import { User } from '../user/user.entity';
 import { Comment } from '../comment/comment.entity';
@@ -21,6 +23,12 @@ export class Post {
 
   @Column()
   communityType: string;
+
+  @CreateDateColumn()
+  created_at: Date;
+
+  @UpdateDateColumn()
+  updated_at: Date;
 
   @ManyToMany(() => User, (user) => user.posts)
   users: User[];
