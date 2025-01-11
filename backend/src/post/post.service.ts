@@ -13,8 +13,11 @@ export class PostService {
     private readonly postRepository: Repository<PostEntity>,
   ) {}
 
-  async create(createPostInfo: CreatePostDto) {
-    const post = await this.postRepository.create({ ...createPostInfo });
+  async create(createPostInfo: CreatePostDto, userId) {
+    const post = await this.postRepository.create({
+      ...createPostInfo,
+      user: userId,
+    });
 
     return this.postRepository.save(post);
   }
