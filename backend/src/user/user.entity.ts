@@ -36,20 +36,7 @@ export class User {
   @UpdateDateColumn()
   updated_at: Date;
 
-  @ManyToMany(() => Post, (post) => post.users, {
-    cascade: true,
-  })
-  @JoinTable({
-    name: 'user_post',
-    joinColumn: {
-      name: 'user_id',
-      referencedColumnName: 'id',
-    },
-    inverseJoinColumn: {
-      name: 'post_id',
-      referencedColumnName: 'id',
-    },
-  })
+  @OneToMany(() => Post, (post) => post.user)
   posts: Post[];
 
   @OneToMany(() => Comment, (comment) => comment.user)

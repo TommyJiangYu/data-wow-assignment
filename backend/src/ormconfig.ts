@@ -21,7 +21,7 @@ const config: DataSourceOptions = {
   synchronize: false,
   logging: false,
   entities: ['dist/**/*.entity{.ts,.js}'],
-  migrations: ['src/migrations/*{.ts}'],
+  migrations: ['dist/migrations/*{.ts,.js}'],
   subscribers: [],
   migrationsTableName: 'migrations',
 };
