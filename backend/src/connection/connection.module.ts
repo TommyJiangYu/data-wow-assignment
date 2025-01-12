@@ -4,6 +4,6 @@ import { ConnectionService } from './connection.service';
 
 @Module({
   controllers: [ConnectionController],
-  providers: [ConnectionService]
+  providers: [ConnectionService],
 })
 export class ConnectionModule {}

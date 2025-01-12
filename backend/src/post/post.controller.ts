@@ -16,7 +16,7 @@ import { PostService } from './post.service';
 import { CreatePostDto, UpdatePostDto } from './dto';
 import { PaginationDto } from 'src/pagination/pagination.dto';
 import { QueryParams } from 'src/pagination/types';
-import { JwtAuthGuard } from 'src/auth/auth.guard';
+import { AuthGuard } from 'src/auth/auth.guard';
 
 @Controller('posts')
 export class PostController {
@@ -34,19 +34,19 @@ export class PostController {
   }
 
   @Post()
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(AuthGuard)
   create(@Body() createPostDto: CreatePostDto, @Req() req) {
     return this.postService.create(createPostDto, req.user.id);
   }
 
   @Put(':id')
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(AuthGuard)
   update(@Param('id') id: number, @Body() updatePostDto: UpdatePostDto) {
     return this.postService.update({ id, updatePostInfo: updatePostDto });
   }
 
   @Delete(':id')
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(AuthGuard)
   remove(@Param('id') id: number) {
     return this.postService.remove({ id });
   }
